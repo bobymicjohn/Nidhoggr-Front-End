@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Axon Tracer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Orbitron:500,700' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <style type="text/css"><!--
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    --></style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="paint.js"></script>
+    <script type="text/javascript" src="init.js"></script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-843113-2']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+</head>
+<body>
+    <h4>Please trace the axon in the image below:</h4>
+    <div class="container">
+        <div id="toolbar" style="border: 1px solid black; float: left;">
+            <div id="load" title="load image" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/load.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="draw" title="pen/tracer tool" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/draw2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="erase" title="eraser tool" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/erase.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="undo" title="undo" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/undo2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="redo" title="redo" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/redo2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="incBrightness" title="increase brightness" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/brUp2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="decBrightness" title="decrease brightness" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/brDown2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="incContrast" title="increase contrast" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/conUp2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="decContrast" title="decrease contrast" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/conDown2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="reset" title="reset" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;" data-tooltip="reset"><img src="images/restore2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="bcreset" title="reset brightness and contrast only" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;" data-tooltip="reset"><img src="images/bcrestore2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="preset" title="reset tracing only" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;" data-tooltip="reset"><img src="images/prestore2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="settings" title="settings" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/settings.png" width="50" height="50" /></div><div style="clear: both;"></div>
+            <div id="run" title="run" style="background: -moz-radial-gradient(center, ellipse cover, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%);border: 1px solid black; width:50px; height:50px; float:left;"><img src="images/run2.png" width="50" height="50" /></div><div style="clear: both;"></div>
+        </div>
+        <div id="canvasDiv" width=800; height=700; style="border: 3px solid black">
+            <canvas id="imageViewLayer1" width=800; height=700; style = "position: absolute; z-index: 1;"></canvas>
+            <canvas id="imageViewLayer0" width=800; height=700; style = "position: absolute; z-index: 0;">
+                <p>Unfortunately, your browser is currently unsupported by our web
+                    application.  We are sorry for the inconvenience. Please use one of the
+                    supported browsers listed below, or draw the image you want using an
+                    offline tool.</p>
+                <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a
+                        href="http://www.mozilla.com">Firefox</a>, <a
+                        href="http://www.apple.com/safari">Safari</a>, and <a
+                        href="http://www.konqueror.org">Konqueror</a>.</p>
+            </canvas>
+
+        </div>
+    </div>
+    <div id="mask">
+        <img src="images/blur.png" />
+        <div id="settingsDiv">
+            <h3>Settings:</h3>
+            <form id="settingsForm">
+                First name:<br>
+                <input type="text" name="firstname">
+                <br><br>
+                Last name:<br>
+                <input type="text" name="lastname">
+                <br><br>
+                Server Post URL:<br>
+                <input type="text" name="postURL">
+                <br><br>
+                Server Request URL:<br>
+                <input type="text" name="reqURL">
+                <br><br>
+                Eraser Size:<br>
+                <input type="number" name="eraserSize">
+                <br><br>
+                Trace Pen Color:<br>
+                <input type="color" name="favcolor" value="#ff0000">
+            </form>
+            <div id="saveButton"><button onclick="saveForm()">Save</button></div>
+            <div id="cancelButton"><button onclick="cancel()">Cancel</button></div>
+        </div>
+    </div>
+</body>
+</html>

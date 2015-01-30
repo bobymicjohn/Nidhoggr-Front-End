@@ -1,0 +1,62 @@
+body {
+    background-color: #404040;
+}
+head {
+    z-index: 8999;
+    background-color: #2b2b2b;
+}
+[id=canvasDiv]{
+    background-color: #2b2b2b;
+    cursor:  not-allowed;
+}
+[id=imageViewLayer0]{
+    background-color: #2b2b2b;
+    border: 2px solid black;
+}
+[id=imageViewLayer1]{
+    border: 2px solid black;
+}
+[id=settingsDiv]{
+    position: absolute;
+    top: 75px;
+    left: 100px;
+    z-index: 9001;
+    background-color: #2b2b2b;
+    border: 2px solid black;
+    width: 600px;
+    height: 600px;
+}
+[id=mask]{
+    z-index: 9000;
+    position: absolute;
+}
+[id=settingsForm]{
+    padding: 20px;
+    color: #46eaed;
+}
+[id=saveButton]{
+    color: #46eaed;
+    position: absolute;
+    left: 20px;
+}
+[id=cancelButton]{
+    color: #46eaed;
+    position: absolute;
+    left: 80px;
+}
+h4 {
+    color: #46eaed;
+    text-align: left;
+    text-indent: 10px;
+    font-size: 25px;
+    font-family: 'Orbitron';
+    margin: 10px;
+}
+h3 {
+    color: #46eaed;
+    text-align: left;
+    text-indent: 10px;
+    font-size: 25px;
+    font-family: 'Orbitron';
+    margin: 10px;
+}
